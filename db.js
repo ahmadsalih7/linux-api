@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const config = require("config");
+const logger = require("./logger/dev_logger");
 
 host = config.get("db.host");
 port = config.get("db.port");
@@ -10,10 +11,10 @@ function mongoose_connect() {
   mongoose
     .connect(URI)
     .then(() => {
-      console.log("Connected to mongodb");
+      logger.info("Connected to Mongodb ...");
     })
     .catch((err) => {
-      console.log(err.message);
+      logger.error(err.message);
     });
 }
 
